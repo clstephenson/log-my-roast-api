@@ -2,7 +2,7 @@ package com.clstephenson.logmyroast.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -15,7 +15,7 @@ public class RoastLogEntry {
 
     @Column(name = "roast_date")
     @NotNull
-    private ZonedDateTime roastDate;
+    private LocalDate roastDate;
 
     @ManyToOne(targetEntity = Source.class)
     private Source source;
@@ -47,11 +47,11 @@ public class RoastLogEntry {
     public RoastLogEntry() {
     }
 
-    public RoastLogEntry(@NotNull ZonedDateTime roastDate) {
+    public RoastLogEntry(@NotNull LocalDate roastDate) {
         this.roastDate = roastDate;
     }
 
-    public RoastLogEntry(@NotNull ZonedDateTime roastDate, Source source, CoffeeBean coffeeBean, int startWeightInGrams,
+    public RoastLogEntry(@NotNull LocalDate roastDate, Source source, CoffeeBean coffeeBean, int startWeightInGrams,
                          int endWeightInGrams, String firstCrackStart, String firstCrackPeak, String firstCrackEnd,
                          String roastEnd, String notes) {
         this.roastDate = roastDate;
@@ -74,11 +74,11 @@ public class RoastLogEntry {
         this.id = id;
     }
 
-    public ZonedDateTime getRoastDate() {
+    public LocalDate getRoastDate() {
         return roastDate;
     }
 
-    public void setRoastDate(ZonedDateTime roastDate) {
+    public void setRoastDate(LocalDate roastDate) {
         this.roastDate = roastDate;
     }
 

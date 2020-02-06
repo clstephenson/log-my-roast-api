@@ -3,7 +3,6 @@ package com.clstephenson.logmyroast.controllers;
 import com.clstephenson.logmyroast.exceptions.RoastLogEntryNotFoundException;
 import com.clstephenson.logmyroast.models.RoastLogEntry;
 import com.clstephenson.logmyroast.services.RoastLogEntryService;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.Before;
@@ -16,7 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -48,12 +47,10 @@ public class RoastLogEntryRestControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        objectMapper.disable(SerializationFeature.WRITE_DATES_WITH_ZONE_ID);
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
-        testLogEntry1 = new RoastLogEntry(ZonedDateTime.now());
+        testLogEntry1 = new RoastLogEntry(LocalDate.now());
         testLogEntry1.setId(1);
-        testLogEntry2 = new RoastLogEntry(ZonedDateTime.now());
+        testLogEntry2 = new RoastLogEntry(LocalDate.now());
         testLogEntry2.setId(2);
         roastLogEntries = Arrays.asList(testLogEntry1, testLogEntry2);
     }
@@ -66,7 +63,7 @@ public class RoastLogEntryRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].roastDate", is(roastLogEntries.get(0).getRoastDate().toOffsetDateTime().toString())));
+                .andExpect(jsonPath("$[0].roastDate", is(roastLogEntries.get(0).getRoastDate().toString())));
 
         verify(roastLogEntryService, times(1)).findAllLogEntries();
     }
@@ -78,7 +75,7 @@ public class RoastLogEntryRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.roastDate", is(testLogEntry1.getRoastDate().toOffsetDateTime().toString())));
+                .andExpect(jsonPath("$.roastDate", is(testLogEntry1.getRoastDate().toString())));
 
         verify(roastLogEntryService, times(1)).findLogEntryById(anyInt());
     }
@@ -101,7 +98,7 @@ public class RoastLogEntryRestControllerTest {
                 .content(objectMapper.writeValueAsString(testLogEntry1)))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.roastDate", is(testLogEntry1.getRoastDate().toOffsetDateTime().toString())));
+                .andExpect(jsonPath("$.roastDate", is(testLogEntry1.getRoastDate().toString())));
 
         verify(roastLogEntryService, times(1)).save(any(RoastLogEntry.class));
     }
@@ -115,7 +112,7 @@ public class RoastLogEntryRestControllerTest {
                 .content(objectMapper.writeValueAsString(testLogEntry1)))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.roastDate", is(testLogEntry1.getRoastDate().toOffsetDateTime().toString())));
+                .andExpect(jsonPath("$.roastDate", is(testLogEntry1.getRoastDate().toString())));
 
         verify(roastLogEntryService, times(1)).findLogEntryById(anyInt());
         verify(roastLogEntryService, times(1)).save(any(RoastLogEntry.class));

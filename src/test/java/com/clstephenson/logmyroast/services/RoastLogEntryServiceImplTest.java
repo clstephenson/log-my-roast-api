@@ -9,9 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
@@ -24,8 +22,8 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class RoastLogEntryServiceImplTest {
 
-    private static final ZonedDateTime LOG_ENTRY_1_DATE = ZonedDateTime.of(LocalDateTime.now(), ZoneId.of("UTC"));
-    private static final ZonedDateTime LOG_ENTRY_2_DATE = LOG_ENTRY_1_DATE.plus(2, ChronoUnit.DAYS);
+    private static final LocalDate LOG_ENTRY_1_DATE = LocalDate.now();
+    private static final LocalDate LOG_ENTRY_2_DATE = LOG_ENTRY_1_DATE.plus(2, ChronoUnit.DAYS);
     @Mock
     RoastLogEntryRepository roastLogEntryRepository;
     @InjectMocks
@@ -59,7 +57,7 @@ public class RoastLogEntryServiceImplTest {
 
     @Test
     public void save_ReturnSavedLogEntry() {
-        final ZonedDateTime LOG_ENTRY_3_DATE = LOG_ENTRY_1_DATE.plus(5, ChronoUnit.DAYS);
+        final LocalDate LOG_ENTRY_3_DATE = LOG_ENTRY_1_DATE.plus(5, ChronoUnit.DAYS);
         RoastLogEntry logEntry = new RoastLogEntry(LOG_ENTRY_3_DATE);
         when(roastLogEntryRepository.save(logEntry)).thenReturn(logEntry);
         assertThat(roastLogEntryService.save(logEntry), equalTo(logEntry));
