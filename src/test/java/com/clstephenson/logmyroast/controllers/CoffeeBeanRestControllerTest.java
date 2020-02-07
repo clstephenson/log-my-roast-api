@@ -61,7 +61,7 @@ public class CoffeeBeanRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].farm", is(testBean1.getFarm())));
+                .andExpect(jsonPath("$[0].name", is(testBean1.getName())));
 
         verify(coffeeBeanService, times(1)).findAllCoffeeBeans();
     }
@@ -73,7 +73,7 @@ public class CoffeeBeanRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.farm", is(testBean1.getFarm())));
+                .andExpect(jsonPath("$.name", is(testBean1.getName())));
 
         verify(coffeeBeanService, times(1)).findCoffeeBeanById(anyInt());
     }
@@ -96,7 +96,7 @@ public class CoffeeBeanRestControllerTest {
                 .content(objectMapper.writeValueAsString(testBean1)))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.farm", is(testBean1.getFarm())));
+                .andExpect(jsonPath("$.name", is(testBean1.getName())));
 
         verify(coffeeBeanService, times(1)).save(any(CoffeeBean.class));
     }
@@ -110,7 +110,7 @@ public class CoffeeBeanRestControllerTest {
                 .content(objectMapper.writeValueAsString(testBean1)))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.farm", is(testBean1.getFarm())));
+                .andExpect(jsonPath("$.name", is(testBean1.getName())));
 
         verify(coffeeBeanService, times(1)).findCoffeeBeanById(anyInt());
         verify(coffeeBeanService, times(1)).save(any(CoffeeBean.class));

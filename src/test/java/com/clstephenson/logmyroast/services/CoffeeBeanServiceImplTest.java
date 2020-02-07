@@ -23,9 +23,9 @@ import static org.mockito.Mockito.*;
 public class CoffeeBeanServiceImplTest {
 
     private static final Origin BEAN_1_ORIGIN = Origin.COLUMBIA;
-    private static final String BEAN_1_FARM = "Los Hermanos";
+    private static final String BEAN_1_NAME = "Los Hermanos";
     private static final Origin BEAN_2_ORIGIN = Origin.ETHIOPIA;
-    private static final String BEAN_2_FARM = "Guji Majo";
+    private static final String BEAN_2_NAME = "Guji Majo";
     @Mock
     CoffeeBeanRepository coffeeBeanRepositoryMock;
     @InjectMocks
@@ -36,8 +36,8 @@ public class CoffeeBeanServiceImplTest {
 
     @Before
     public void setup() {
-        bean1 = new CoffeeBean(BEAN_1_ORIGIN, BEAN_1_FARM);
-        bean2 = new CoffeeBean(BEAN_2_ORIGIN, BEAN_2_FARM);
+        bean1 = new CoffeeBean(BEAN_1_ORIGIN, BEAN_1_NAME);
+        bean2 = new CoffeeBean(BEAN_2_ORIGIN, BEAN_2_NAME);
         beans = Arrays.asList(bean1, bean2);
     }
 
@@ -60,8 +60,8 @@ public class CoffeeBeanServiceImplTest {
     @Test
     public void save_ReturnSavedBean() {
         final Origin BEAN_3_ORIGIN = Origin.GUATEMALA;
-        final String BEAN_3_FARM = "Farm in Guatemala";
-        CoffeeBean bean3 = new CoffeeBean(BEAN_3_ORIGIN, BEAN_3_FARM);
+        final String BEAN_3_NAME = "Farm in Guatemala";
+        CoffeeBean bean3 = new CoffeeBean(BEAN_3_ORIGIN, BEAN_3_NAME);
         when(coffeeBeanRepositoryMock.save(bean3)).thenReturn(bean3);
         assertThat(coffeeBeanService.save(bean3), equalTo(bean3));
 

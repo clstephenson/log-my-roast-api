@@ -16,7 +16,7 @@ public class CoffeeBean {
     private Origin origin;
 
     @NotNull
-    private String farm;
+    private String name;
 
     private String elevation;
 
@@ -30,15 +30,15 @@ public class CoffeeBean {
     public CoffeeBean() {
     }
 
-    public CoffeeBean(@NotNull Origin origin, @NotNull String farm) {
+    public CoffeeBean(@NotNull Origin origin, @NotNull String name) {
         this.origin = origin;
-        this.farm = farm;
+        this.name = name;
     }
 
-    public CoffeeBean(@NotNull Origin origin, @NotNull String farm, String elevation, Processes process,
+    public CoffeeBean(@NotNull Origin origin, @NotNull String name, String elevation, Processes process,
                       String recommendedRoast, String notes) {
         this.origin = origin;
-        this.farm = farm;
+        this.name = name;
         this.elevation = elevation;
         this.process = process;
         this.recommendedRoast = recommendedRoast;
@@ -61,12 +61,12 @@ public class CoffeeBean {
         this.origin = origin;
     }
 
-    public String getFarm() {
-        return farm;
+    public String getName() {
+        return name;
     }
 
-    public void setFarm(String farm) {
-        this.farm = farm;
+    public void setName(String farm) {
+        this.name = farm;
     }
 
     public String getElevation() {
@@ -103,7 +103,7 @@ public class CoffeeBean {
 
     @Override
     public int hashCode() {
-        return Objects.hash(origin, farm, elevation, process, recommendedRoast, notes);
+        return Objects.hash(origin, name, elevation, process, recommendedRoast, notes);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class CoffeeBean {
         if (o == null || getClass() != o.getClass()) return false;
         CoffeeBean that = (CoffeeBean) o;
         return origin == that.origin &&
-                farm.equals(that.farm) &&
+                name.equals(that.name) &&
                 Objects.equals(elevation, that.elevation) &&
                 process == that.process &&
                 Objects.equals(recommendedRoast, that.recommendedRoast) &&
@@ -124,7 +124,7 @@ public class CoffeeBean {
         return "CoffeeBean{" +
                 "id=" + id +
                 ", origin=" + origin +
-                ", farm='" + farm + '\'' +
+                ", farm='" + name + '\'' +
                 ", elevation='" + elevation + '\'' +
                 ", process=" + process +
                 ", recommendedRoast='" + recommendedRoast + '\'' +
