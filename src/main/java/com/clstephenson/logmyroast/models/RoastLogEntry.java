@@ -29,17 +29,17 @@ public class RoastLogEntry {
     @Column(name = "end_weight_grams")
     private int endWeightInGrams;
 
-    @Column(name = "first_crack_start")
-    private String firstCrackStart;
+    @Column(name = "start_roast_time")
+    private String startRoastTime;
 
-    @Column(name = "first_crack_peak")
-    private String firstCrackPeak;
+    @Column(name = "first_crack_start")
+    private String firstCrackStartTime;
 
     @Column(name = "first_crack_end")
-    private String firstCrackEnd;
+    private String firstCrackEndTime;
 
-    @Column(name = "roast_end")
-    private String roastEnd;
+    @Column(name = "end_roast_time")
+    private String endRoastTime;
 
     @Column(name = "notes")
     private String notes;
@@ -52,17 +52,17 @@ public class RoastLogEntry {
     }
 
     public RoastLogEntry(@NotNull LocalDate roastDate, Source source, CoffeeBean coffeeBean, int startWeightInGrams,
-                         int endWeightInGrams, String firstCrackStart, String firstCrackPeak, String firstCrackEnd,
-                         String roastEnd, String notes) {
+                         int endWeightInGrams, String firstCrackStartTime, String startRoastTime, String firstCrackEndTime,
+                         String endRoastTime, String notes) {
         this.roastDate = roastDate;
         this.source = source;
         this.coffeeBean = coffeeBean;
         this.startWeightInGrams = startWeightInGrams;
         this.endWeightInGrams = endWeightInGrams;
-        this.firstCrackStart = firstCrackStart;
-        this.firstCrackPeak = firstCrackPeak;
-        this.firstCrackEnd = firstCrackEnd;
-        this.roastEnd = roastEnd;
+        this.startRoastTime = startRoastTime;
+        this.firstCrackStartTime = firstCrackStartTime;
+        this.firstCrackEndTime = firstCrackEndTime;
+        this.endRoastTime = endRoastTime;
         this.notes = notes;
     }
 
@@ -114,36 +114,36 @@ public class RoastLogEntry {
         this.endWeightInGrams = endWeightInGrams;
     }
 
-    public String getFirstCrackStart() {
-        return firstCrackStart;
+    public String getFirstCrackStartTime() {
+        return firstCrackStartTime;
     }
 
-    public void setFirstCrackStart(String firstCrackStart) {
-        this.firstCrackStart = firstCrackStart;
+    public void setFirstCrackStartTime(String firstCrackStart) {
+        this.firstCrackStartTime = firstCrackStart;
     }
 
-    public String getFirstCrackPeak() {
-        return firstCrackPeak;
+    public String getStartRoastTime() {
+        return startRoastTime;
     }
 
-    public void setFirstCrackPeak(String firstCrackPeak) {
-        this.firstCrackPeak = firstCrackPeak;
+    public void setStartRoastTime(String firstCrackPeak) {
+        this.startRoastTime = firstCrackPeak;
     }
 
-    public String getFirstCrackEnd() {
-        return firstCrackEnd;
+    public String getFirstCrackEndTime() {
+        return firstCrackEndTime;
     }
 
-    public void setFirstCrackEnd(String firstCrackEnd) {
-        this.firstCrackEnd = firstCrackEnd;
+    public void setFirstCrackEndTime(String firstCrackEnd) {
+        this.firstCrackEndTime = firstCrackEnd;
     }
 
-    public String getRoastEnd() {
-        return roastEnd;
+    public String getEndRoastTime() {
+        return endRoastTime;
     }
 
-    public void setRoastEnd(String roastEnd) {
-        this.roastEnd = roastEnd;
+    public void setEndRoastTime(String roastEnd) {
+        this.endRoastTime = roastEnd;
     }
 
     public String getNotes() {
@@ -156,8 +156,8 @@ public class RoastLogEntry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(roastDate, source, coffeeBean, startWeightInGrams, endWeightInGrams, firstCrackStart,
-                firstCrackPeak, firstCrackEnd, roastEnd, notes);
+        return Objects.hash(roastDate, source, coffeeBean, startWeightInGrams, endWeightInGrams, firstCrackStartTime,
+                startRoastTime, firstCrackEndTime, endRoastTime, notes);
     }
 
     @Override
@@ -170,10 +170,10 @@ public class RoastLogEntry {
                 roastDate.equals(that.roastDate) &&
                 Objects.equals(source, that.source) &&
                 Objects.equals(coffeeBean, that.coffeeBean) &&
-                Objects.equals(firstCrackStart, that.firstCrackStart) &&
-                Objects.equals(firstCrackPeak, that.firstCrackPeak) &&
-                Objects.equals(firstCrackEnd, that.firstCrackEnd) &&
-                Objects.equals(roastEnd, that.roastEnd) &&
+                Objects.equals(firstCrackStartTime, that.firstCrackStartTime) &&
+                Objects.equals(startRoastTime, that.startRoastTime) &&
+                Objects.equals(firstCrackEndTime, that.firstCrackEndTime) &&
+                Objects.equals(endRoastTime, that.endRoastTime) &&
                 Objects.equals(notes, that.notes);
     }
 
@@ -186,10 +186,10 @@ public class RoastLogEntry {
                 ", coffeeBean=" + coffeeBean +
                 ", startWeightInGrams=" + startWeightInGrams +
                 ", endWeightInGrams=" + endWeightInGrams +
-                ", firstCrackStart='" + firstCrackStart + '\'' +
-                ", firstCrackPeak='" + firstCrackPeak + '\'' +
-                ", firstCrackEnd='" + firstCrackEnd + '\'' +
-                ", roastEnd='" + roastEnd + '\'' +
+                ", firstCrackStart='" + firstCrackStartTime + '\'' +
+                ", firstCrackPeak='" + startRoastTime + '\'' +
+                ", firstCrackEnd='" + firstCrackEndTime + '\'' +
+                ", roastEnd='" + endRoastTime + '\'' +
                 ", notes='" + notes + '\'' +
                 '}';
     }
